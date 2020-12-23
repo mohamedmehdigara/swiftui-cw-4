@@ -5,7 +5,6 @@
 //  Created by Omar Alibrahim on 12/19/20.
 //  Copyright: Kuwait Codes 2020 code.kw
 
-
 import SwiftUI
 
 struct Calculator: View {
@@ -18,7 +17,9 @@ struct Calculator: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    Text("0").modifier(TitleModifier())
+                    Text("0")
+                        .modifier(TitleModifier())
+                        .animation(.easeIn(duration: 0.1))
                 }
                 HStack{
                     Text("C").modifier(ButtonModifier(type: .gray))
@@ -49,7 +50,6 @@ struct Calculator: View {
                     Text(".").modifier(ButtonModifier(type: .gray))
                     Text("=").modifier(ButtonModifier(type: .orange))
                 }
-                
             }
             .padding()
         }
@@ -66,6 +66,9 @@ struct TitleModifier: ViewModifier{
     func body(content: Content) -> some View {
         content
             .font(.system(size: 120, weight: .thin, design: .default))
+            .foregroundColor(.white)
+            .lineLimit(1)
+            .minimumScaleFactor(0.2)
     }
 }
 
@@ -94,11 +97,12 @@ struct Zero: ViewModifier{
             .background(Color.gray)
             .clipShape(Capsule())
             .foregroundColor(Color.white)
+        
     }
 }
 
 struct Calculator_Previews: PreviewProvider {
     static var previews: some View {
-        Calculator().environment(\.colorScheme, .dark)
+        Calculator()//.environment(\.colorScheme, .dark)
     }
 }
