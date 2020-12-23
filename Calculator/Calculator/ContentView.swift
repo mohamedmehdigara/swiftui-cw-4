@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct Calculator: View {
-    
     // MARK: - Add states here
+    
     var body: some View {
         ZStack{
             Color.black.edgesIgnoringSafeArea(.all)
@@ -18,104 +18,36 @@ struct Calculator: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    Text("0")
-                        .font(.system(size: 120, weight: .thin, design: .default))
+                    Text("0").modifier(TitleModifier())
                 }
                 HStack{
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("C").modifier(ButtonModifier(type: .gray))
-                    }
+                    Text("C").modifier(ButtonModifier(type: .gray))
                     Text("±").modifier(ButtonModifier(type: .gray))
                     Text("%").modifier(ButtonModifier(type: .gray))
                     Text("÷").modifier(ButtonModifier(type: .orange))
                 }
                 HStack{
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("7").modifier(ButtonModifier(type: .gray))
-                    }
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("8").modifier(ButtonModifier(type: .gray))
-                    }
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("9").modifier(ButtonModifier(type: .gray))
-                    }
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("×").modifier(ButtonModifier(type: .orange))
-                    }
+                    Text("7").modifier(ButtonModifier(type: .gray))
+                    Text("8").modifier(ButtonModifier(type: .gray))
+                    Text("9").modifier(ButtonModifier(type: .gray))
+                    Text("×").modifier(ButtonModifier(type: .orange))
                 }
                 HStack{
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("4").modifier(ButtonModifier(type: .gray))
-                    }
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("5").modifier(ButtonModifier(type: .gray))
-                    }
-                    
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("6").modifier(ButtonModifier(type: .gray))
-                    }
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("-").modifier(ButtonModifier(type: .orange))
-                    }
+                    Text("4").modifier(ButtonModifier(type: .gray))
+                    Text("5").modifier(ButtonModifier(type: .gray))
+                    Text("6").modifier(ButtonModifier(type: .gray))
+                    Text("-").modifier(ButtonModifier(type: .orange))
                 }
                 HStack{
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("1").modifier(ButtonModifier(type: .gray))
-                    }
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("2").modifier(ButtonModifier(type: .gray))
-                    }
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("3").modifier(ButtonModifier(type: .gray))
-                    }
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("+").modifier(ButtonModifier(type: .orange))
-                    }
+                    Text("1").modifier(ButtonModifier(type: .gray))
+                    Text("2").modifier(ButtonModifier(type: .gray))
+                    Text("3").modifier(ButtonModifier(type: .gray))
+                    Text("+").modifier(ButtonModifier(type: .orange))
                 }
                 HStack{
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text("0")
-                            .modifier(Zero())
-                    }
-                    Button(action: {
-                        // MARK: - Add action here
-                    }){
-                        Text(".").modifier(ButtonModifier(type: .gray))
-                    }
-                    Button(action: {
-                        // MARK: - Add states here
-                        
-                    }){
-                        Text("=").modifier(ButtonModifier(type: .orange))
-                    }
+                    Text("0").modifier(Zero())
+                    Text(".").modifier(ButtonModifier(type: .gray))
+                    Text("=").modifier(ButtonModifier(type: .orange))
                 }
                 
             }
@@ -128,6 +60,16 @@ struct Calculator: View {
  This code is to minimize the code you write for each button.
  You create modifiers and add them to each button, and they will all share same modifiers
  */
+
+// 1. Title Modifier: To present the result
+struct TitleModifier: ViewModifier{
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 120, weight: .thin, design: .default))
+    }
+}
+
+// 2. Button Modifier:
 struct ButtonModifier: ViewModifier{
     enum `Type`{case gray, orange, zero}
     var type: Type
@@ -142,7 +84,7 @@ struct ButtonModifier: ViewModifier{
     }
 }
 
-// This view modifier for 0 specifically, where it width is
+// 3. Zero Modifier, this view modifier for 0 specifically, where it width is
 struct Zero: ViewModifier{
     func body(content: Content) -> some View {
         content
