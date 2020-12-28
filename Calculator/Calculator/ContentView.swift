@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Calculator: View {
     // MARK: - Add states here
-    
+    @State var title: String = ""
     var body: some View {
         ZStack{
             Color.black.edgesIgnoringSafeArea(.all)
